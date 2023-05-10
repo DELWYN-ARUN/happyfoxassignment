@@ -1,0 +1,40 @@
+[
+  {
+    "predicate": "All",
+    "conditions": [
+      {
+        "field": "From",
+        "predicate": "Contains",
+        "value": "delwynanand@gmail.com"
+      },
+      {
+        "field": "Subject",
+        "predicate": "Equals",
+        "value": "interview"
+      }
+    ],
+    "actions": [
+      "Mark as read",
+      "Move Message: Important"
+    ]
+  },
+  {
+    "predicate": "Any",
+    "conditions": [
+      {
+        "field": "From",
+        "predicate": "Contains",
+        "value": "dapg2401@gmail.com"
+      },
+      {
+        "field": "Subject",
+        "predicate": "Contains",
+        "value": "interview"
+      }
+    ],
+    "actions": [
+      "Mark as unread",
+      "Move Message: interview"
+    ]
+  }
+]
