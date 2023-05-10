@@ -1,1 +1,90 @@
 # happyfoxassignment
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+DEMO VIDEO LINK: https://drive.google.com/file/d/1j3pRA4KHhdYYbxGvLN2d86cWPo17kFVh/view?usp=sharing
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+HOW TO RUN THE CODE:
+setup the necessary environment
+RUN h.py
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+1.credentials.json: The credentials needed to authenticate the application with the Gmail API are contained in this file. The usual method for getting it is by establishing a project in the Google Cloud Console and turning on the Gmail API.
+
+2.rules.json: The email rules that specify the criteria and actions to be applied to incoming emails are contained in this file. Each condition's field names, predicates, and values are specified, along with the actions to be taken when the criteria are satisfied. To process emails according to the specified criteria, the python code reads the rules from this file.
+
+3.client_secret.json: This file is used to perform authentication. It includes data necessary for the application to authenticate with the Gmail API as well as client-specific secrets. The file is commonly acquired while creating login credentials for the Gmail API project in the Google Cloud Console.
+
+4.token.json: After the user gives the programme permission to access their Gmail account, this file holds their authentication token. It is produced during the authentication process and used to preserve the user's authorisation state. To send the user's authorised queries to the Gmail API, the token is necessary.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+EXPLANATION OF h.py CODE:
+
+1.The required modules are imported, including base64, os, json, datetime, re, and pymysql. These modules are used for various functionalities in the code.
+
+2.The code imports necessary classes and functions from the Google API libraries, such as `Request` and `Credentials`, to authenticate and interact with the Gmail API.
+
+3.The `get_database_connection()` function establishes a connection to a MySQL database. It uses the pymysql library and returns the connection object.
+
+4.The `SCOPES` variable defines the required scopes for accessing the Gmail API.
+
+5.The code checks if the token.json file exists. If it does, it loads the credentials from the file. Otherwise, it performs the OAuth2 authentication flow using the installed application flow and saves the obtained credentials to the token.json file.
+
+6.The `CLIENT_SECRET_FILE`, `TOKEN_FILE`, and `RULES_FILE` variables store the filenames for the client secret, token, and rules JSON files, respectively.
+
+7.The `authenticate()` function handles the authentication process for the Gmail API. It checks if the token file exists and loads the credentials. If the credentials are not valid or expired, it performs the authentication flow using the client secret file and saves the updated credentials to the token file.
+
+8.The `fetch_emails(service)` function fetches emails from the Gmail Inbox using the Gmail API. It sends a request to the API to list messages in the Inbox label and retrieves the message IDs. Then, it retrieves the complete email information for each message ID and appends them to the `emails` list.
+
+9.The `store_emails(emails, service)` function stores the fetched emails in a MySQL database. It establishes a database connection, iterates over the emails, and inserts or updates the email details in the "emails" table.
+
+10.The `get_header_value(msg, header_name)` function retrieves the value of a specific header field from the email message. It searches for the header with the given name in the message headers and returns its value. It also performs additional processing for the "Date" header to convert it to a standardized format.
+
+11.The `get_message_body(msg)` function retrieves the body of the email message. It checks the message payload and its parts to find the plain text body and decodes it from base64.
+
+12.The `mark_email_as_read(email_id, service)` function marks an email as read by removing the "UNREAD" label from the email using the Gmail API.
+
+13.The `mark_email_as_unread(email_id, service)` function marks an email as unread by adding the "UNREAD" label to the email using the Gmail API.
+
+14.The `move_email_to_folder(email_id, folder, service)` function moves an email to a specified folder (label) in Gmail. It retrieves the label ID corresponding to the folder name and uses the Gmail API to modify the labels of the email, adding the target label and removing the "INBOX" label.
+
+15.The `process_emails(service)` function processes the fetched emails based on the predefined rules. It reads the rules from the rules.json file and iterates over each email. For each email, it checks if any rule conditions match and performs the associated actions if the conditions are met.
+
+16.The `check_condition(email, condition)` function checks if a given email meets a specific condition defined in a rule. It compares the field, predicate, and value of the condition against the corresponding email attributes (e.g., sender, subject, message body, received date/time) and returns a boolean result.
+
+17.The `perform_actions(email, actions, service)` function performs the specified actions on an email. It iterates over the list of actions and executes the corresponding actions using the Gmail API. Actions include marking an email as read, marking an email as unread, and moving an email to a specified folder.
+
+18.In the main section of the code, the `authenticate()` function is called to authenticate with the Gmail API and obtain the necessary credentials.
+
+19.The Gmail service is built using the authenticated credentials.
+
+20.The `fetch_emails()` function is called to fetch emails from the Inbox using the Gmail API.
+
+21.The `store_emails()` function is called to store the fetched emails in the MySQL database.
+
+22.The `process_emails()` function is called to process the fetched emails based on the predefined rules.
+
+The code involves authenticating with the Gmail API, fetching emails from the Inbox, storing them in a MySQL database, and processing them according to the specified rules. The code uses various functions and methods provided by the Gmail API and interacts with a MySQL database using the pymysql library.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+TOOLS AND REQUIREMENTS:
+
+SOFTWARE REQUIREMENTS:
+
+1:Python
+
+2:Google API Client Library
+
+3:Google API Credentials
+
+4:MySQL Database
+
+5:PYCHARM IDE
+
+HARDWARE REQUIREMENTS:
+
+1:RAM: At least 2 GB of RAM is recommended, although the code should run with less.
+
+2:Storage: Sufficient storage space to store the code files, dependencies, and any emails that will be stored in the MySQL database.
+
+3:Internet Connectivity: A stable internet connection is required to authenticate with the Gmail API and fetch emails.
+
+
+
+ENJOYYYY!!!!
