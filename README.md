@@ -14,6 +14,7 @@ RUN h.py
 3.client_secret.json: This file is used to perform authentication. It includes data necessary for the application to authenticate with the Gmail API as well as client-specific secrets. The file is commonly acquired while creating login credentials for the Gmail API project in the Google Cloud Console.
 
 4.token.json: After the user gives the programme permission to access their Gmail account, this file holds their authentication token. It is produced during the authentication process and used to preserve the user's authorisation state. To send the user's authorised queries to the Gmail API, the token is necessary.
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 EXPLANATION OF h.py CODE:
 
